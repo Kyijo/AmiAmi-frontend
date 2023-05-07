@@ -3,7 +3,7 @@
     <div class="top-0 flex justify-between items-center px-4">
       <div class="w-20">
         <!-- logo of the website that will redirect to home page once you click on it-->
-        <router-link to="/Home">
+        <router-link to="/">
           <img src="../assets/img/logo.png" alt="website logo" class="rounded-full logo">
         </router-link>
       </div>
