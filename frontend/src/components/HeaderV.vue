@@ -4,12 +4,12 @@
       <div class="w-20">
         <!-- logo of the website that will redirect to home page once you click on it-->
         <router-link to="/">
-          <img src="../assets/img/logo.png" alt="website logo" class="rounded-full logo">
+          <img src="../assets/img/logos/logo.png" alt="website logo" class="rounded-full logo">
         </router-link>
       </div>
       <!--navbar to -->
       <nav class="flex justify-center">
-        <router-link to="/Post" class="px-4 text-white hover:text-green-600 h-7">Post</router-link>
+        <router-link to="/Post" class="px-4 text-white hover:text-green-600 h-7 hover:font-bold">Post</router-link>
         <router-link to="/Signin" class="px-4 text-white hover:text-blue-600 bg-green-500 rounded-lg h-7 font-bold">Sign in</router-link>
         <router-link to="/Login" class="px-4 text-white hover:text-blue-600">Log in</router-link>
       </nav>
