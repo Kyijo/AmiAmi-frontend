@@ -4,6 +4,8 @@ This project is a frontend implementation of an AmiAmi, built using Vue.js, Tail
 
 It aims to provide similar functionalities and user experience as the popular image hosting and sharing platform Imgur.
 
+[Backend for AmiAmi](https://github.com/Kyijo/AmiAmi-backend)
+
 ## Introduction
 
 AmiAmi is a friendly web application, that allows users to share, browse images and short videos with others. 
