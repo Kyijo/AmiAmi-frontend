@@ -24,13 +24,13 @@ Currently to look at the website you need to clone this project into your VScode
 To achieve that should follow this route:
 
 - Clone the repository
- - git clone https://github.com/amiami-frontend
+  - git clone https://github.com/amiami-frontend
 - navigate to the frontend 
- - cd frontend
+  - cd frontend
 - download npm
- - npm install
+  - npm install
 - start development server
- - npm run dev
+  - npm run dev
 
 ## Acknowledgments
 The AmiAmi project is inspired by the popular image hosting platform Imgur. 
