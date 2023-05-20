@@ -6,7 +6,7 @@ const routes = [
   { path: '/login', component:()=> import('./pages/Login.vue') },
   { path: '/post', component:()=> import('./pages/Post.vue') },
   { path: '/about', component:()=> import('./pages/About.vue') },
-  { path: '/contact', component:()=> import('./pages/Contact.vue') }
+  {path: '/:pathMatch(.*)*', component:()=> import('./pages/NotFound.vue')}
 ]
 
 const router = createRouter({
@@ -15,3 +15,5 @@ const router = createRouter({
 })
 
 export default router
+
+
