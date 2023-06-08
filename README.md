@@ -24,7 +24,7 @@ AmiAmi is a friendly web application that allows users to share and browse image
 To view the website, follow these steps:
 
 Clone the repository:
-git clone https://github.com/Kyijo/amiami-frontend
+git clone https://github.com/Kyijo/amiami-frontend.git
 
 Download npm
 
