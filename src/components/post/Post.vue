@@ -88,8 +88,11 @@
 </template>
 
 <script>
+import axios from "axios";
 import Footer from "../layout/Footer.vue";
 import Header from "../layout/Header.vue";
+import VueJwtDecode from 'vue-jwt-decode';
+
 export default {
   components: {
     Footer,
@@ -114,6 +117,7 @@ export default {
         this.selectedImage = URL.createObjectURL(file);
         this.selectedVideo = null;
         this.selectedMedia = {
+          file: file,
           url: this.selectedImage,
           type: "image",
         };
@@ -138,13 +142,37 @@ export default {
         this.tagsInput = "";
       }
     },
-    submit() {},
     removeTag(tag) {
       const index = this.tags.indexOf(tag);
       if (index !== -1) {
         this.tags.splice(index, 1);
       }
     },
+/*
+    async submit(){
+      try{
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+       console.log('Token not found');
+       return;
+        }
+        const decoded = VueJwtDecode.decode(token);
+        const formData = new FormData();
+        formData.append("nameOfImage", this.nameInput);
+        formData.append("tags", this.tags);
+        formData.append("image", this.selectedMedia.file);
+        formData.append("name" , decoded.name);
+        console.log(formData)
+        axios.post('http://localhost:1234/api/image/upload', formData)
+          .then((response) => {
+            console.log(response);
+          }, (error) => {
+            console.log(error);
+          })
+      } catch (error) {
+        console.log(error);
+      }
+    }*/
   },
 };
 </script>

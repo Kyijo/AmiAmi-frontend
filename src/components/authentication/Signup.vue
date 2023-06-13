@@ -102,7 +102,6 @@ export default {
 
         axios.post('http://localhost:1234/api/user/register', formData)
           .then(response => {
-            // 
             sessionStorage.setItem('token', response.data);
             this.$router.push({ path: '/' });
           })
@@ -111,7 +110,6 @@ export default {
             this.errorMessage = error.response.data.message;
           });
       } catch (error) {
-        // Handle any other synchronous errors
         console.error(error);
       }
     },
