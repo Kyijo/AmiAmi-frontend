@@ -13,43 +13,40 @@
     <div class="relative">
       <div v-if="!showAllTags">
         <div class="flex justify-between items-center">
-          <span class="left-20 relative px-4 font-bold text-white">SOME TAGS</span>
-          <a href="#" class="text-white hover:text-blue-600 font-bold absolute right-20" @click="showAllTags = true">
+          <span class="pl-4 py-2 font-bold text-white">SOME TAGS</span>
+          <a href="#" class="text-white hover:text-blue-600 font-bold pr-4" @click="showAllTags = true">
             VIEW ALL TAGS
           </a>
         </div>
-        <div class="grid grid-cols-12 mt-4">
+        <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4 mt-4 justify-start">
           <template v-for="(tag, index) in displayedTags" :key="tag.id">
             <HeaderTag
               :image="tag.backgroundImage"
               :label="tag.name"
             />
-            <br v-if="(index + 1) % maxDisplayedTags === 0 && index !== displayedTags.length - 1" />
           </template>
         </div>
       </div>
       <div v-else>
         <div class="flex justify-between items-center">
-          <span class="left-20 relative px-4 font-bold text-white">SOME TAGS</span>
-          <a href="#" class="text-white hover:text-blue-600 font-bold absolute right-20" @click="showAllTags = false">
+          <span class="pl-4 py-2 font-bold text-white">SOME TAGS</span>
+          <a href="#" class="text-white hover:text-blue-600 font-bold pr-4" @click="showAllTags = false">
             HIDE TAGS
           </a>
         </div>
-        <div class="grid grid-cols-12 mt-4 justify-between">
+        <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4 mt-4 justify-start">
           <template v-for="(tag, index) in tags" :key="tag.id">
             <HeaderTag
               :image="tag.backgroundImage"
               :label="tag.name"
               :class="getRowClass(index)"
             />
-            <br v-if="(index + 1) % 12 === 0 && index !== tags.length - 1" />
           </template>
         </div>
       </div>
     </div>
   </header>
 </template>
-
 
 <script>
 import axios from 'axios';

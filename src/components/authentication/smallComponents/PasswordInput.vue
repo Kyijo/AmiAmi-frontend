@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-4">
+    <div class="mb-4 mt-4">
       <label class="block font-bold mb-2 text-white" for="password">
         <i class="fas fa-lock inline-block h-4 w-4 mr-2"></i>
         Password

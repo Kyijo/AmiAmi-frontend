@@ -23,8 +23,8 @@
       </template>
       <template v-else>
         <!-- Sign in and Log in links -->
-        <router-link to="/Signup" class="px-4 text-white hover:text-blue-600 rounded-lg h-7 font-bold">Sign up</router-link>
-        <router-link to="/Login" class="px-4 text-white hover:text-blue-600 rounded-lg font-bold">Log in</router-link>
+        <router-link to="/signup" class="px-4 text-white hover:text-blue-600 rounded-lg h-7 font-bold">Sign up</router-link>
+        <router-link to="/login" class="px-4 text-white hover:text-blue-600 rounded-lg font-bold">Log in</router-link>
       </template>
     </nav>
   </template>
@@ -51,7 +51,6 @@
         this.$emit('toggle-dropdown');
       },
       account() {
-        // Handle account click
       },
       logout() {
         this.$emit('logout');
