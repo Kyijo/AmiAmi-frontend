@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <div class="w-full max-w-sm p-8 bg-[#331147] rounded-lg shadow-lg">
+  <div class="flex justify-center items-center min-h-screen">
+    <div class="w-full sm:max-w-sm md:w-4/5 lg:w-3/5 xl:w-2/5 p-8 bg-[#331147] rounded-lg shadow-lg">
       <form class="space-y-6" @submit.prevent="login">
         <!-- Logo -->
         <div class="flex justify-center mb-6">
@@ -44,6 +44,32 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 639px) {
+  .max-w-md {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .max-w-md {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .max-w-md {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .max-w-md {
+    max-width: 70%;
+  }
+}
+</style>
 
 <script>
 import axios from 'axios';

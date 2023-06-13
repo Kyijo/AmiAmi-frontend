@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center h-screen">
-    <div class="w-full max-w-sm p-8 bg-[#331147] rounded-lg shadow-lg">
+    <div class="w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl p-8 bg-[#331147] rounded-lg shadow-lg">
       <form class="px-8 pt-6 pb-8 mb-4">
         <!-- Logo -->
         <div class="flex justify-center mb-6">
@@ -53,7 +53,7 @@
 
         <!-- Back to login button -->
         <div class="flex justify-center mt-4">
-          <button class="text-sm text-blue-500 hover:underline" @click="goToLogin">Don't have an account? Sign up</button>
+          <button class="text-sm text-blue-500 hover:underline" @click="goToLogin">Already have an account? Log in</button>
         </div>
       </form>
 
@@ -116,7 +116,7 @@ export default {
       }
     },
     goToLogin() {
-      this.$router.push('/Login');
+      this.$router.push('/login');
     },
   },
 };
