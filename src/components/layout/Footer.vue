@@ -3,7 +3,7 @@
       <div class="container mx-auto px-4">
         <div class="flex justify-center items-center">
           <div class="flex items-center">
-            <img src="../../assets/img/icons/logo.png" alt="Logo" class="h-8 mr-4 rounded-full">
+            <img src="../../assets/img/icons/logo.jpeg" alt="Logo" class="h-8 mr-4 rounded-full">
             <p class="font-bold text-white">AmiAmi</p>
           </div>
           <nav class="flex items-center">

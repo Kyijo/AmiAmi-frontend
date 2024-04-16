@@ -51,6 +51,7 @@
         this.$emit('toggle-dropdown');
       },
       account() {
+        this.$router.push('/account');
       },
       logout() {
         this.$emit('logout');

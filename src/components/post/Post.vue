@@ -1,61 +1,36 @@
 <template>
-  <div>
+  <div class="container">
     <Header />
-
     <div class="flex items-center justify-center mt-10">
       <div class="max-w-md">
         <div v-if="activeTab === 'image'">
-          <div class="bg-gray-800 rounded-lg shadow-lg p-8">
+          <div class="bg-[#260742] rounded-lg shadow-lg p-8">
             <div>
               <div class="mb-4">
+                <div v-if="!selectedImage" class="border-dashed border-2 border-gray-300 p-4 mb-4 cursor-pointer" @click="openFileExplorer" @drop.prevent="handleDrop" @dragover.prevent>
+                  <p class="text-gray-500">Drop image here or click to upload</p>
+                </div>
+
                 <label class="block font-bold text-white text-sm" for="imageUpload">
-                  <span class="flex items-center">
-                    <svg class="w-4 h-4 mr-1 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                      <path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Image Upload
-                  </span>
-                </label>
-                <input class="hidden" id="imageUpload" type="file" accept="image/*" @change="handleImageUpload" />
-                <label class="flex items-center justify-center w-full h-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer transition duration-300 ease-in-out" for="imageUpload">
-                  <span class="flex items-center">
-                    <svg class="w-4 h-4 mr-1 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                      <path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Choose Image
-                  </span>
-                </label>
-              </div>
-              <div class="mb-4">
-                <label class="block font-bold text-white text-sm" for="videoUpload">
-                  <span class="flex items-center">
-                    <svg class="w-4 h-4 mr-1 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                      <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                    </svg>
-                    Video Upload
-                  </span>
-                </label>
-                <input class="hidden" id="videoUpload" type="file" accept="video/*" @change="handleVideoUpload" />
-                <label class="flex items-center justify-center w-full h-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer transition duration-300 ease-in-out" for="videoUpload">
-                  <span class="flex items-center">
-                    <svg class="w-4 h-4 mr-1 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                      <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                    </svg>
-                    Choose Video
-                  </span>
+                  <input class="hidden" id="imageUpload" type="file" accept="image/jpeg,image/jpg" ref="fileInput" @change="handleFileInput" />
                 </label>
               </div>
               <div v-if="mediaUploaded" class="">
                 <div class="flex items-center flex-col">
                   <label class="block font-bold text-white text-sm">Name</label>
                   <input class="w-full bg-gray-800 text-white rounded py-2 px-4 mb-2 focus:outline-none focus:bg-gray-900" type="text" placeholder="Enter name" v-model="nameInput" />
-                  <img v-if="selectedImage" :src="selectedMedia.url" class="w-full h-auto rounded" alt="Selected Image" />
-                  <video v-if="selectedVideo" :src="selectedMedia.url" class="w-full h-auto rounded" controls></video>
+                  <img v-if="selectedImage" :src="selectedImage" class="w-full h-auto rounded" alt="Selected Image" />
+                  <video v-if="selectedVideo" :src="selectedVideo" class="w-full h-auto rounded" controls></video>
                   <div class="m-4 flex flex-col">
                     <label class="block font-bold text-white text-sm">Tags</label>
                     <div class="flex">
-                      <input class="w-full bg-gray-800 text-white rounded py-2 px-4 mr-2 focus:outline-none focus:bg-gray-900" type="text" placeholder="Add tags..." v-model="tagsInput" @keydown.enter="addTag" />
-                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" @click="addTag">
+                      <select class="w-full bg-gray-800 text-white rounded py-2 px-4 mr-2 focus:outline-none focus:bg-gray-900" v-model="selectedTag">
+                        <option disabled value="">Please select a tag</option>
+                        <option v-for="tag in allTags" :key="tag.id" :value="tag.name">
+                          {{ tag.name }}
+                        </option>
+                      </select>
+                      <button class="bg-blue-500 text-white rounded py-2 px-4 focus:outline-none focus:bg-blue-700" @click="addTag">
                         Add Tag
                       </button>
                     </div>
@@ -92,6 +67,7 @@ import axios from "axios";
 import Footer from "../layout/Footer.vue";
 import Header from "../layout/Header.vue";
 import VueJwtDecode from 'vue-jwt-decode';
+import { uuid } from 'vue-uuid';
 
 export default {
   components: {
@@ -106,12 +82,26 @@ export default {
       selectedMedia: null,
       mediaUploaded: false,
       nameInput: "",
-      tagsInput: "",
+      selectedTag: "",
+      uuid: "",
       tags: [],
+      allTags: [],
     };
   },
+  created() {
+    axios.get('http://localhost:1234/api/tag/getAllTags')
+      .then(response => {
+        this.allTags = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  },
   methods: {
-    handleImageUpload(event) {
+    openFileExplorer() {
+      this.$refs.fileInput.click();
+    },
+    handleFileInput(event) {
       const file = event.target.files[0];
       if (file) {
         this.selectedImage = URL.createObjectURL(file);
@@ -124,22 +114,24 @@ export default {
         this.mediaUploaded = true;
       }
     },
-    handleVideoUpload(event) {
+    handleDrop(event) {
       const file = event.target.files[0];
       if (file) {
-        this.selectedVideo = URL.createObjectURL(file);
-        this.selectedImage = null;
+        this.selectedImage = URL.createObjectURL(file);
+        this.selectedVideo = null;
         this.selectedMedia = {
-          url: this.selectedVideo,
-          type: "video",
+          file: file,
+          url: this.selectedImage,
+          type: "image",
         };
         this.mediaUploaded = true;
       }
     },
     addTag() {
-      if (this.tagsInput) {
-        this.tags.push(this.tagsInput);
-        this.tagsInput = "";
+      if (this.selectedTag) {
+        this.tags.push(this.selectedTag);
+        this.allTags = this.allTags.filter(tag => tag.name !== this.selectedTag);
+        this.selectedTag = "";
       }
     },
     removeTag(tag) {
@@ -148,31 +140,35 @@ export default {
         this.tags.splice(index, 1);
       }
     },
-/*
     async submit(){
       try{
         const token = sessionStorage.getItem('token');
+        const genUuid = uuid.v4();
         if (!token) {
        console.log('Token not found');
        return;
         }
         const decoded = VueJwtDecode.decode(token);
         const formData = new FormData();
-        formData.append("nameOfImage", this.nameInput);
+        formData.append("name", this.nameInput);
         formData.append("tags", this.tags);
-        formData.append("image", this.selectedMedia.file);
-        formData.append("name" , decoded.name);
-        console.log(formData)
+        formData.append("file", this.selectedMedia.file);
+        formData.append("user" , decoded.sub);
+        formData.append("uuid", genUuid);
+        console.log(formData);
+        console.log(decoded);
         axios.post('http://localhost:1234/api/image/upload', formData)
           .then((response) => {
             console.log(response);
+            this.$router.push({ path: `/post/${genUuid}` });
           }, (error) => {
-            console.log(error);
+            alert('Failed to upload image');
+            this.$router.push({ path: `/` });
           })
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
-    }*/
+    }
   },
 };
 </script>
@@ -192,4 +188,10 @@ export default {
   background-color: #f2f2f2;
   color: #333333;
 }
-</style>
+
+.container {
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+  }
+</style>S

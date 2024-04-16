@@ -21,7 +21,7 @@
         <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4 mt-4 justify-start">
           <template v-for="(tag, index) in displayedTags" :key="tag.id">
             <HeaderTag
-              :image="tag.backgroundImage"
+              :image="tag.url"
               :label="tag.name"
             />
           </template>
@@ -37,7 +37,7 @@
         <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4 mt-4 justify-start">
           <template v-for="(tag, index) in tags" :key="tag.id">
             <HeaderTag
-              :image="tag.backgroundImage"
+              :image="tag.url"
               :label="tag.name"
               :class="getRowClass(index)"
             />
@@ -115,7 +115,6 @@ export default {
         });
     },
     getRowClass(index) {
-      // Calculate the row class based on the index
       if (index >= 12 && index < 24) {
         return 'row-span-2';
       } else if (index >= 24 && index < 36) {

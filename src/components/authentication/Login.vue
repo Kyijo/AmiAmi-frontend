@@ -1,13 +1,11 @@
 <template>
   <div class="flex justify-center items-center min-h-screen">
-    <div class="w-full sm:max-w-sm md:w-4/5 lg:w-3/5 xl:w-2/5 p-8 bg-[#331147] rounded-lg shadow-lg">
+    <div class="w-full sm:max-w-sm md:w-4/5 lg:w-3/5 xl:w-2/5 p-8 bg-[#260742] rounded-lg shadow-lg">
       <form class="space-y-6" @submit.prevent="login">
-        <!-- Logo -->
         <div class="flex justify-center mb-6">
-          <img src="src\assets\img\icons\logo.png" alt="Logo" class="h-16 rounded-full">
+          <img src="src\assets\img\icons\logo.jpeg" alt="Logo" class="h-16 rounded-full">
         </div>
 
-        <!-- Username input -->
         <FormInput
           label="Username"
           placeholder="Enter your username"
@@ -15,31 +13,24 @@
           v-on:update:value="username = $event"
         />
 
-        <!-- Password input -->
         <PasswordInput
           v-bind:value="password" 
           v-on:update:value="password = $event"
         />
 
-        <!-- Login button -->
         <SubmitButton text="Log in" @submit="login" />
 
-        <!-- Error message -->
         <ErrorMessage v-if="errorDisplay" :message="errorMessage" />
 
-        <!-- Forgot password link -->
         <ForgottenPassword />
 
-        <!-- Sign up button -->
         <div class="flex justify-center">
           <button class="text-sm text-blue-500 hover:underline" @click="goToSignup">Don't have an account? Sign up</button>
         </div>
       </form>
 
-      <!-- Back to main page button -->
       <BackButton/>
       
-      <!-- Footer -->
       <p class="mt-4 text-center text-gray-500 text-xs">&copy;2023 Beep Beep AmiAmi rights.</p>
     </div>
   </div>
@@ -100,18 +91,19 @@ export default {
   methods: {
     async login() {
       try {
-        const formData = new FormData();
-        formData.append('username', this.username);
-        formData.append('password', this.password);
+        const jsonRequest = {
+          username: this.username,
+          password: this.password
+        };
 
-        axios.post('http://localhost:1234/api/user/login', formData)
+        axios.post('http://localhost:1234/api/user/login', jsonRequest)
           .then(response => {
-            sessionStorage.setItem('token', response.data);
+            sessionStorage.setItem('token', response.data.token);
             this.$router.push({path: '/'});
           })
           .catch(error => {
             this.errorDisplay = true;
-            this.errorMessage = error.response.data.message;
+            this.errorMessage = error.response.data
           });
       } catch (error) {
         console.error(error);

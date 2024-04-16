@@ -24,17 +24,14 @@
           </div>
           <div class="flex items-center mb-4 md:mb-0">
             <img src="https://tailwindui.com/img/tailwindui-logo.svg" alt="TailwindCSS logo" class="h-10 mr-4">
-            <p class="text-white font-bold">TailwindCSS</p>
           </div>
         </div>
         <div class="flex flex-col md:flex-row justify-center items-center mt-4">
           <div class="flex items-center mb-4 md:mb-0">
             <img src="https://www.vectorlogo.zone/logos/java/java-ar21.svg" alt="Java logo" class="h-10 mr-4">
-            <p class="text-white font-bold">Java</p>
           </div>
           <div class="flex items-center mb-4 md:mb-0 mx-4">
             <img src="https://www.vectorlogo.zone/logos/springio/springio-ar21.svg" alt="Spring logo" class="h-10 mr-4">
-            <p class="text-white font-bold">Spring</p>
           </div>
           <div class="flex items-center mb-4 md:mb-0">
             <img src="https://www.postgresql.org/media/img/about/press/elephant.png" alt="PostgreSQL logo" class="h-10 mr-4">
