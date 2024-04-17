@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "vue-uuid": "^3.0.0",
     "axios": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
