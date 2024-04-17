@@ -105,7 +105,7 @@ export default {
     },
     fetchTags() {
       axios
-        .get('http://localhost:1234/api/tag/getAllTags')
+        .get('https://amiami.onrender.com/api/tag/getAllTags')
         .then((response) => {
           this.tags = response.data;
           this.displayedTags = this.tags.slice(0, this.maxDisplayedTags);

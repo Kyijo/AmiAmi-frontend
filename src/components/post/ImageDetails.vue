@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         async fetchImageData() {
-            const response = await fetch(`http://localhost:1234/api/image/getByUuid/${this.$route.params.uuid}`);
+            const response = await fetch(`https://amiami.onrender.com/api/image/getByUuid/${this.$route.params.uuid}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -57,7 +57,6 @@ export default {
 </script>
   
 <style>
-/* Custom styles */
 .container {
     margin: 0 auto;
     padding: 2rem 1rem;
@@ -119,17 +118,14 @@ export default {
     padding-bottom: 1rem;
 }
 
-/* Increase size of image and name */
 .text-3xl {
     font-size: 2rem;
 }
 
-/* Increase spacing between name and uploader */
 .text-xs {
     margin-top: 0.5rem;
 }
 
-/* Increase image margin */
 .max-w-lg {
     margin-bottom: 2rem;
 }

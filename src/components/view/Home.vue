@@ -46,7 +46,7 @@
     methods: {
       fetchAllImages() {
         axios
-          .get('http://localhost:1234/api/image/getAllImages')
+          .get('https://amiami.onrender.com/api/image/getAllImages')
           .then(response => {
             this.allImages = response.data;
             this.loadNextPage();
@@ -59,7 +59,6 @@
         const start = this.currentPage * this.perPage;
         const end = start + this.perPage;
         
-        // Filter out images with duplicate UUIDs
         const newImages = this.allImages.slice(start, end).filter(image => !this.visibleImages.some(visibleImage => visibleImage.uuid === image.uuid));
         
         this.visibleImages = [...this.visibleImages, ...newImages];

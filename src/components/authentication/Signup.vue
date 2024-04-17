@@ -103,7 +103,7 @@ export default {
           password: this.password,
         };
         console.log(jsonRequest);
-        axios.post('http://localhost:1234/api/user/register', jsonRequest)
+        axios.post('https://amiami.onrender.com/api/user/register', jsonRequest)
           .then(response => {
             sessionStorage.setItem('token', response.data.token);
             this.$router.push({ path: '/' });

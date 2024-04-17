@@ -64,8 +64,7 @@
       decodeToken(token) {
         const decoded = VueJwtDecode.decode(token);
         if (decoded) {
-          this.user.name = decoded.name;
-          this.user.email = decoded.email;
+          this.user.sub = decoded.sub;
         }
       },
     },

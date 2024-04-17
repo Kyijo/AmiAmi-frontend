@@ -30,13 +30,10 @@ export default {
       const labelSpan = this.$refs.label;
       const container = labelSpan.parentNode;
       
-      // Reset font size to default
       labelSpan.style.fontSize = '';
       
-      // Check if the label overflows the container
       if (labelSpan.offsetWidth > container.offsetWidth) {
-        // Decrease font size until the text fits
-        let fontSize = 16; // starting font size
+        let fontSize = 16;
         while (labelSpan.offsetWidth > container.offsetWidth && fontSize > 8) {
           fontSize--;
           labelSpan.style.fontSize = `${fontSize}px`;

@@ -89,7 +89,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:1234/api/tag/getAllTags')
+    axios.get('https://amiami.onrender.com/api/tag/getAllTags')
       .then(response => {
         this.allTags = response.data;
       })
@@ -157,7 +157,7 @@ export default {
         formData.append("uuid", genUuid);
         console.log(formData);
         console.log(decoded);
-        axios.post('http://localhost:1234/api/image/upload', formData)
+        axios.post('https://amiami.onrender.com/api/image/upload', formData)
           .then((response) => {
             console.log(response);
             this.$router.push({ path: `/post/${genUuid}` });
