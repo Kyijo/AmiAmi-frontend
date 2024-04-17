@@ -3,7 +3,7 @@
     <div class="w-full sm:max-w-sm md:w-4/5 lg:w-3/5 xl:w-2/5 p-8 bg-[#260742] rounded-lg shadow-lg">
       <form class="space-y-6" @submit.prevent="login">
         <div class="flex justify-center mb-6">
-          <img src="src\assets\img\icons\logo.jpeg" alt="Logo" class="h-16 rounded-full">
+          <img src="https://res.cloudinary.com/dlzcrc5oy/image/upload/v1713269250/amiami_fe/logo_xjjlss.jpg" alt="Logo" class="h-16 rounded-full">
         </div>
 
         <FormInput

@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col items-center justify-center h-screen">
       <h1 class="text-4xl font-bold mb-4 text-white">Oopsie! Silly,</h1>
-      <img src="../../assets/img/common/not_found.jpg" alt="Funny Image" class="h-max w-auto mb-6" />
+      <img src="https://res.cloudinary.com/dlzcrc5oy/image/upload/v1713341861/amiami_fe/not_found_f7rkoe.jpg" alt="Funny Image" class="h-max w-auto mb-6" />
       <p class="text-lg text-white mb-8">The page you're looking for does not exist.</p>
       <router-link to="/" class="btn-primary">Go to Home</router-link>
     </div>
